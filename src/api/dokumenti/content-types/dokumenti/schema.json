@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dokumentis",
+  "info": {
+    "singularName": "dokumenti",
+    "pluralName": "dokumentis",
+    "displayName": "Документи",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Document": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "DocumentName": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

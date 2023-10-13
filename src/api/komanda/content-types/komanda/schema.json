@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "komandas",
+  "info": {
+    "singularName": "komanda",
+    "pluralName": "komandas",
+    "displayName": "Команда",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "TeamType": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "vchitel": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::vchitel.vchitel",
+      "inversedBy": "komandas"
+    }
+  }
+}

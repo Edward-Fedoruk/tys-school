@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vchitels",
+  "info": {
+    "singularName": "vchitel",
+    "pluralName": "vchitels",
+    "displayName": "Вчитель",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "FullName": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "komandas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::komanda.komanda",
+      "mappedBy": "vchitel"
+    }
+  }
+}
