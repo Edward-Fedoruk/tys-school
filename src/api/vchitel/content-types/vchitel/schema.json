@@ -19,9 +19,21 @@
     },
     "komandas": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::komanda.komanda",
-      "mappedBy": "vchitel"
+      "mappedBy": "vchitels"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "role": {
+      "type": "string",
+      "required": true
     }
   }
 }

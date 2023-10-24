@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "novinis",
+  "info": {
+    "singularName": "novini",
+    "pluralName": "novinis",
+    "displayName": "новини"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "news": {
+      "type": "richtext"
+    }
+  }
+}

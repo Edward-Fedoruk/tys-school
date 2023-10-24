@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kategoriya_vihovnoyi_robotis",
+  "info": {
+    "singularName": "kategoriya-vihovnoyi-roboti",
+    "pluralName": "kategoriya-vihovnoyi-robotis",
+    "displayName": "категорія виховної роботи",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "vihovana_robotas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::vihovana-robota.vihovana-robota",
+      "inversedBy": "kategoriya_vihovnoyi_robotis"
+    }
+  }
+}

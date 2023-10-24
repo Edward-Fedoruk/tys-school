@@ -691,6 +691,11 @@ export interface ApiDokumentiDokumenti extends Schema.CollectionType {
   attributes: {
     Document: Attribute.Media & Attribute.Required;
     DocumentName: Attribute.String & Attribute.Required;
+    kategoriya_dokumentiv: Attribute.Relation<
+      'api::dokumenti.dokumenti',
+      'manyToOne',
+      'api::kategoriya-dokumentiv.kategoriya-dokumentiv'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -702,6 +707,80 @@ export interface ApiDokumentiDokumenti extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::dokumenti.dokumenti',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiKategoriyaDokumentivKategoriyaDokumentiv
+  extends Schema.CollectionType {
+  collectionName: 'kategoriya_dokumentivs';
+  info: {
+    singularName: 'kategoriya-dokumentiv';
+    pluralName: 'kategoriya-dokumentivs';
+    displayName: '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u044F-\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0456\u0432';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    dokumentis: Attribute.Relation<
+      'api::kategoriya-dokumentiv.kategoriya-dokumentiv',
+      'oneToMany',
+      'api::dokumenti.dokumenti'
+    >;
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::kategoriya-dokumentiv.kategoriya-dokumentiv',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::kategoriya-dokumentiv.kategoriya-dokumentiv',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiKategoriyaVihovnoyiRobotiKategoriyaVihovnoyiRoboti
+  extends Schema.CollectionType {
+  collectionName: 'kategoriya_vihovnoyi_robotis';
+  info: {
+    singularName: 'kategoriya-vihovnoyi-roboti';
+    pluralName: 'kategoriya-vihovnoyi-robotis';
+    displayName: '\u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u044F \u0432\u0438\u0445\u043E\u0432\u043D\u043E\u0457 \u0440\u043E\u0431\u043E\u0442\u0438';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    vihovana_robotas: Attribute.Relation<
+      'api::kategoriya-vihovnoyi-roboti.kategoriya-vihovnoyi-roboti',
+      'manyToMany',
+      'api::vihovana-robota.vihovana-robota'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::kategoriya-vihovnoyi-roboti.kategoriya-vihovnoyi-roboti',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::kategoriya-vihovnoyi-roboti.kategoriya-vihovnoyi-roboti',
       'oneToOne',
       'admin::user'
     > &
@@ -722,9 +801,9 @@ export interface ApiKomandaKomanda extends Schema.CollectionType {
   };
   attributes: {
     TeamType: Attribute.String & Attribute.Required & Attribute.Unique;
-    vchitel: Attribute.Relation<
+    vchitels: Attribute.Relation<
       'api::komanda.komanda',
-      'manyToOne',
+      'manyToMany',
       'api::vchitel.vchitel'
     >;
     createdAt: Attribute.DateTime;
@@ -738,6 +817,36 @@ export interface ApiKomandaKomanda extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::komanda.komanda',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiNoviniNovini extends Schema.CollectionType {
+  collectionName: 'novinis';
+  info: {
+    singularName: 'novini';
+    pluralName: 'novinis';
+    displayName: '\u043D\u043E\u0432\u0438\u043D\u0438';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    news: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::novini.novini',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::novini.novini',
       'oneToOne',
       'admin::user'
     > &
@@ -760,9 +869,11 @@ export interface ApiVchitelVchitel extends Schema.CollectionType {
     FullName: Attribute.String & Attribute.Required & Attribute.Unique;
     komandas: Attribute.Relation<
       'api::vchitel.vchitel',
-      'oneToMany',
+      'manyToMany',
       'api::komanda.komanda'
     >;
+    photo: Attribute.Media & Attribute.Required;
+    role: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -774,6 +885,42 @@ export interface ApiVchitelVchitel extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::vchitel.vchitel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiVihovanaRobotaVihovanaRobota extends Schema.CollectionType {
+  collectionName: 'vihovana_robotas';
+  info: {
+    singularName: 'vihovana-robota';
+    pluralName: 'vihovana-robotas';
+    displayName: '\u0412\u0438\u0445\u043E\u0432\u0430\u043D\u0430 \u0440\u043E\u0431\u043E\u0442\u0430';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Attribute.RichText & Attribute.Required;
+    date: Attribute.Date & Attribute.Required;
+    kategoriya_vihovnoyi_robotis: Attribute.Relation<
+      'api::vihovana-robota.vihovana-robota',
+      'manyToMany',
+      'api::kategoriya-vihovnoyi-roboti.kategoriya-vihovnoyi-roboti'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::vihovana-robota.vihovana-robota',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::vihovana-robota.vihovana-robota',
       'oneToOne',
       'admin::user'
     > &
@@ -798,8 +945,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::dokumenti.dokumenti': ApiDokumentiDokumenti;
+      'api::kategoriya-dokumentiv.kategoriya-dokumentiv': ApiKategoriyaDokumentivKategoriyaDokumentiv;
+      'api::kategoriya-vihovnoyi-roboti.kategoriya-vihovnoyi-roboti': ApiKategoriyaVihovnoyiRobotiKategoriyaVihovnoyiRoboti;
       'api::komanda.komanda': ApiKomandaKomanda;
+      'api::novini.novini': ApiNoviniNovini;
       'api::vchitel.vchitel': ApiVchitelVchitel;
+      'api::vihovana-robota.vihovana-robota': ApiVihovanaRobotaVihovanaRobota;
     }
   }
 }

@@ -17,9 +17,9 @@
       "unique": true,
       "required": true
     },
-    "vchitel": {
+    "vchitels": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::vchitel.vchitel",
       "inversedBy": "komandas"
     }

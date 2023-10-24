@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kategoriya_dokumentivs",
+  "info": {
+    "singularName": "kategoriya-dokumentiv",
+    "pluralName": "kategoriya-dokumentivs",
+    "displayName": "Категорія-Документів",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "dokumentis": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dokumenti.dokumenti",
+      "mappedBy": "kategoriya_dokumentiv"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

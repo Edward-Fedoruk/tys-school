@@ -23,6 +23,12 @@
     "DocumentName": {
       "type": "string",
       "required": true
+    },
+    "kategoriya_dokumentiv": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::kategoriya-dokumentiv.kategoriya-dokumentiv",
+      "inversedBy": "dokumentis"
     }
   }
 }
